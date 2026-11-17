@@ -23,9 +23,12 @@ Java 17, Swing, JDBC, SQLite, Maven. Source packages separate models, database, 
 - Interfaces: the small `Service` interface gives services a common initialization method.
 - Collections: `List`, `Set`, and `Map` hold bottles, visited IDs, and statistics.
 - Exception handling: database and validation errors are shown as readable dialogs.
-- Threads: open **Threads & deadlock** from the home screen. Two worker threads update a shared counter. A `synchronized` method protects it, and both threads take locks in the same order to avoid deadlock. The app never intentionally creates a permanently stuck thread.
+- Threads: open **Threads & deadlock** from the home screen. The demos show `synchronized`, consistent lock ordering, and a bounded producer-consumer queue using guarded `wait()` blocks and `notifyAll()`.
+- JDBC and SQL: `DatabaseConnection` initializes SQLite; services use `DriverManager`, `Connection`, `PreparedStatement`, `executeQuery`, `executeUpdate`, `ResultSet`, and try-with-resources.
+- Lambdas and streams: the category report filters, sorts, and maps collection entries before export.
+- Files and collections: **Export category report as CSV** writes a UTF-8 report with exception-safe resource handling.
 
-The concurrency example is in `ocean.service.ConcurrencyDemo`; its Swing screen is in `ocean.ui.UserInterface`. Existing future letters are assigned to the first local account created after this update.
+The concurrency examples are in `ocean.service.ConcurrencyDemo` and `ocean.service.ProducerConsumerDemo`; both are available from the Threads & deadlock screen. The CSV export is handled by `ocean.service.ReportService`. Existing future letters are assigned to the first local account created after this update.
 
 ## Run
 
@@ -50,4 +53,4 @@ IntelliJ downloads the SQLite JDBC dependency from `pom.xml` during Maven sync. 
 
 ## Privacy note
 
-Public notes and future letters are stored in a local SQLite database without an account or identity. Future letters do not appear in discovery. Anyone with access to the same operating system account and application data folder can read local database contents; the app does not encrypt the database.
+Public notes never store an account ID. Future letters are associated with the local account that saved them. Passwords are stored as salted PBKDF2 hashes. The database itself is not encrypted, so anyone with access to the same operating system account and application data folder can read its contents.
