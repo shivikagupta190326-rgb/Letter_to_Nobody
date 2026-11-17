@@ -1,0 +1,2 @@
+package ocean.utils;
+public final class ValidationUtil { public static final int MAX_LENGTH=1200; private ValidationUtil(){} public static String validate(String value){if(value==null||value.trim().isEmpty())throw new IllegalArgumentException("A bottle needs a few words before it can set sail.");if(value.trim().length()>MAX_LENGTH)throw new IllegalArgumentException("Please keep your message under "+MAX_LENGTH+" characters.");return value.trim();} }
