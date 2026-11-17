@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Message in a Bottle" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="ocean.Main" />
+    <module name="message-in-a-bottle" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
