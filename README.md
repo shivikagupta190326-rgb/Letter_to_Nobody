@@ -7,6 +7,7 @@ A Java Swing desktop experience for releasing anonymous words into a shared ocea
 - Anonymous public bottles, category selection, live character count, preview, confirmation, and random discovery.
 - Discovery avoids repeating a bottle during a session until the other available bottles have been explored.
 - Private future letters stored locally and readable once their target date arrives.
+- Local sign-in keeps future letters separated by account; passwords are salted and hashed with PBKDF2. Public bottles are never linked to an account.
 - Ocean statistics, sample bottles on first launch, animated ocean backdrop, and responsive Swing screens.
 - SQLite persistence at `~/.message-in-a-bottle/ocean.db`; no identity fields are collected.
 
@@ -24,7 +25,7 @@ Java 17, Swing, JDBC, SQLite, Maven. Source packages separate models, database, 
 - Exception handling: database and validation errors are shown as readable dialogs.
 - Threads: open **Threads & deadlock** from the home screen. Two worker threads update a shared counter. A `synchronized` method protects it, and both threads take locks in the same order to avoid deadlock. The app never intentionally creates a permanently stuck thread.
 
-The concurrency example is in `ocean.service.ConcurrencyDemo`; its Swing screen is in `ocean.ui.UserInterface`.
+The concurrency example is in `ocean.service.ConcurrencyDemo`; its Swing screen is in `ocean.ui.UserInterface`. Existing future letters are assigned to the first local account created after this update.
 
 ## Run
 
